@@ -8,35 +8,36 @@ export const ContactsPage = ({ contacts, addContact }) => {
 	const [name, setName] = useState('')
  	const [phone, setPhone] = useState('')
  	const [email, setEmail] = useState('')
-  const [duplicate, setDuplicate] = useState(false)
+  // const [duplicate, setDuplicate] = useState(false)
 
    const handleSubmit = (e) => {
     e.preventDefault();
-    if (!duplicate) {
+    if ((contacts.find((contact)=>contact.email===email))!==undefined) {
+      alert("duplicate emails");
+      return;
+    } else {
       addContact(name, phone, email);
       setName("");
       setPhone("");
       setEmail("");
-    } else {
-      alert("duplicate names")
     }
   };
 
-  useEffect(() => {
-    const nameIsDuplicate = () => {
-      const look = contacts.find((contact) => contact.name === name);
-      if (look !== undefined) {
-        return true;
-      }
-      return false;
-    };
+  // useEffect(() => {
+  //   const emailIsDuplicate = () => {
+  //     const look = contacts.find((contact) => contact.email === email);
+  //     if (look !== undefined) {
+  //       return true;
+  //     }
+  //     return false;
+  //   };
 
-    if (nameIsDuplicate()) {
-      setDuplicate(true);
-    } else {
-      setDuplicate(false);
-    }
-  }, [name, contacts, duplicate]);
+  //   if (emailIsDuplicate()) {
+  //     setDuplicate(true);
+  //   } else {
+  //     setDuplicate(false);
+  //   }
+  // }, [email, contacts, duplicate]);
   
   return (
     <div>

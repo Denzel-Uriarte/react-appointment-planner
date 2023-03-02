@@ -4,19 +4,18 @@ import { Switch, Route, Redirect, NavLink } from "react-router-dom";
 import { AppointmentsPage } from "./containers/appointmentsPage/AppointmentsPage";
 import { ContactsPage } from "./containers/contactsPage/ContactsPage";
 
+const ROUTES = {
+	CONTACTS: "/contacts",
+	APPOINTMENTS: "/appointments",
+};
+
 function App() {
   const [appointments, setAppointments] = useState([]);
   const [contacts, setContacts] = useState([]);
 
-  const ROUTES = {
-    CONTACTS: "/contacts",
-    APPOINTMENTS: "/appointments",
-  };
+
 
  const addAppointment = (title, date, time, contact) => {
-    //if(title, contact, date, time) {
-    //     return
-    // }
     setAppointments([
       ...appointments,
       {
@@ -28,12 +27,6 @@ function App() {
     ]);
  }
  const addContact = (name, phone, email) => {
-//if(title, contact, date, time) {
-    //     return
-    // 
-    console.log('test')
-
-
     setContacts([
       ...contacts,
       {
@@ -46,8 +39,7 @@ function App() {
  
 
   return (
-
-    <>
+    <div>
       <nav>
         <NavLink to={ROUTES.CONTACTS} activeClassName="active">
           Contacts
@@ -76,7 +68,7 @@ function App() {
           </Route>
         </Switch>
       </main>
-    </>
+    </div>
   );
 }
 
